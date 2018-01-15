@@ -4,12 +4,13 @@
 #Declaring variable
 user='hadoop'
 password='hadoop'
+tmpdir='/tmp/apache_hadoop'
 gitrepo_li='https://github.com/sandeepksaini/linuxserversetup'
 gitrepo_hadoop='https://github.com/sandeepksaini/HDP-HadoopCluster'
 hadoop_package='http://apache.is.co.za/hadoop/common/hadoop-3.0.0/hadoop-3.0.0.tar.gz'
 
 #Basic package installation
-yum install git sshpass -y
+yum install git sshpass ssh wget -y
 
 #Cloning repo for script utilization
 for list in ${gitrepo_li} ${gitrepo_hadoop}
@@ -21,7 +22,14 @@ done
 useradd -a ${user}
 echo "hadoop"|passwd --stdin $[password}
 
+#Temporary dir creation and applying permission of hadoop user and group
+mkdir -p ${tmpdir}
+wget -P ${tmpdir} ${hadoop_package} 
+tar -xvf ${tmpdir}/*.gz -C ${tmpdir}
+chown -R ${user}:${group} ${tmpdir}
+
 # SSH Key generation and copy for seemless ssh and allows hadoop to run without issues
 su ${user} -c 'ssh-keygen -t RSA -P "" -f ~/.ssh/id_rsa'
 su ${user} -c 'ssh-copy-id -i /home/${user}/.ssh/id_rsa.pub hadoop@`hostname`
+systemctl sshd restart
 su ${user} -c sshpass -p ${password} ssh-copy-id -f -i ~/.ssh/id_rsa.pub root@`hostname`
