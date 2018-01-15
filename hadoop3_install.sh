@@ -16,7 +16,7 @@ hadoop_package='http://apache.is.co.za/hadoop/common/hadoop-3.0.0/hadoop-3.0.0.t
 yum install git sshpass ssh wget -y
 
 # Create user and group
-useradd -a ${user}
+useradd ${user}
 echo "hadoop"|passwd --stdin ${password}
 
 #Temporary dir creation and applying permission of hadoop user and group
