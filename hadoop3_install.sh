@@ -35,6 +35,6 @@ mv ${tmpdir}/hadoop* ${usr_dir}
 
 # SSH Key generation and copy for seemless ssh and allows hadoop to run without issues
 su ${user} -c 'ssh-keygen -t RSA -P "" -f ~/.ssh/id_rsa'
-su ${user} -c 'ssh-copy-id -i /home/${user}/.ssh/id_rsa.pub hadoop@`hostname`
+su ${user} -c 'ssh-copy-id -i /home/${user}/.ssh/id_rsa.pub hadoop@`hostname`'
 systemctl sshd restart
-su ${user} -c sshpass -p ${password} ssh-copy-id -f -i ~/.ssh/id_rsa.pub root@`hostname`
+su ${user} -c 'sshpass -p ${password} ssh-copy-id -f -i ~/.ssh/id_rsa.pub root@`hostname`'
