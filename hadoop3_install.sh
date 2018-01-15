@@ -3,9 +3,10 @@
 
 #Declaring variable
 user='hadoop'
+group='hadoop'
 password='hadoop'
 tmpdir='/tmp/apache_hadoop'
-usr_dir='/usr/local/hadoop'
+usr_dir='/usr/local/apache_hadoop'
 gitrepo_li='https://github.com/sandeepksaini/linuxserversetup'
 gitrepo_hadoop='https://github.com/sandeepksaini/HDP-HadoopCluster'
 hadoop_package='http://apache.is.co.za/hadoop/common/hadoop-3.0.0/hadoop-3.0.0.tar.gz'
@@ -16,12 +17,12 @@ yum install git sshpass ssh wget -y
 #Cloning repo for script utilization
 for list in ${gitrepo_li} ${gitrepo_hadoop}
 do
-  git -clone ${list}
+  git clone ${list}
 done
 
 # Create user and group
 useradd -a ${user}
-echo "hadoop"|passwd --stdin $[password}
+echo "hadoop"|passwd --stdin ${password}
 
 #Temporary dir creation and applying permission of hadoop user and group
 mkdir -p ${tmpdir}
