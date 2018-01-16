@@ -23,7 +23,7 @@ echo "hadoop"|passwd --stdin ${password}
 mkdir -p ${tmpdir}
 mkdir -p ${usr_dir}
 mkdir -p ${git_dir}
-wget -a -P ${tmpdir} ${hadoop_package}
+wget -q -P ${tmpdir} ${hadoop_package}
 tar -xf ${tmpdir}/*.gz -C ${tmpdir}
 rm -rf ${tmpdir}/*.gz
 chown -R ${user}:${group} ${tmpdir}
