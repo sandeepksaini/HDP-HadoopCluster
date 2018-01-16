@@ -27,6 +27,7 @@ wget -P ${tmpdir} ${hadoop_package}
 tar -xvf ${tmpdir}/*.gz -C ${tmpdir}
 rm -rf ${tmpdir}/*.gz
 chown -R ${user}:${group} ${tmpdir}
+chown -R ${user}:${group} ${usr_dir}
 mv ${tmpdir}/hadoop* ${usr_dir}
 
 #Git : Cloning repo for script utilization
