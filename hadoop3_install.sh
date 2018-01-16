@@ -30,9 +30,9 @@ chown -R ${user}:${group} ${tmpdir}
 mv ${tmpdir}/hadoop* ${usr_dir}
 
 #Cloning repo for script utilization
-for list in ${gitrepo_linux} ${gitrepo_hadoop}
+for repolist in ${gitrepo_linux} ${gitrepo_hadoop}
 do
-  git clone ${list} ${git_dir}
+  git -c ${git_dir} clone ${repolist}
   chown -R ${user}:${group} ${git_dir}
 done
 
