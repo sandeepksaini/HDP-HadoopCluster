@@ -13,7 +13,7 @@ gitrepo_hadoop='https://github.com/sandeepksaini/HDP-HadoopCluster'
 hadoop_package='http://apache.is.co.za/hadoop/common/hadoop-3.0.0/hadoop-3.0.0.tar.gz'
 
 #Basic package installation
-yum install git sshpass ssh wget -y
+yum -q install git sshpass ssh wget -y
 
 # Create user and group
 useradd ${user}
@@ -34,7 +34,7 @@ mv ${tmpdir}/hadoop* ${usr_dir}
 for repolist in ${gitrepo_linux} ${gitrepo_hadoop}
 do
   cd ${git_dir}
-  git clone ${repolist}
+  git clone ${repolist} 1>/dev/null 2>&1
   chown -R ${user}:${group} ${git_dir}
   cd -
 done
