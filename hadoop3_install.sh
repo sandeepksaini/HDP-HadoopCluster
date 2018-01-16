@@ -1,4 +1,4 @@
-#!/bin/sh
+!/bin/sh
 #Purpose : To automate the process of Hadoopv3 installation single node setup
 
 #Declaring variable
@@ -23,19 +23,19 @@ echo "hadoop"|passwd --stdin ${password}
 mkdir -p ${tmpdir}
 mkdir -p ${usr_dir}
 mkdir -p ${git_dir}
-wget -P ${tmpdir} ${hadoop_package} 
+wget -P ${tmpdir} ${hadoop_package}
 tar -xvf ${tmpdir}/*.gz -C ${tmpdir}
 rm -rf ${tmpdir}/*.gz
 chown -R ${user}:${group} ${tmpdir}
 mv ${tmpdir}/hadoop* ${usr_dir}
 
 #Cloning repo for script utilization
-for list in ${gitrepo_li} ${gitrepo_hadoop}
+or list in ${gitrepo_li} ${gitrepo_hadoop}
 do
-  git clone ${list}
+  git clone ${list} ${git_dir}
 done
 
 # SSH Key generation and copy for seemless ssh and allows hadoop to run without issues
 su ${user} -c 'ssh-keygen -t RSA -P "" -f ~/.ssh/id_rsa'
-su ${user} -c 'user='hadoop';password='hadoop';ssh-copy-id -f -i /home/${user}/.ssh/id_rsa.pub ${user}@`hostname`'
+su ${user} -c 'user='hadoop';password='hadoop';sshpass -p ${password} ssh-copy-id -i /home/${user}/.ssh/id_rsa.pub -o StrictHostKeyChecking=no ${user}@`hostname`'
 systemctl sshd restart
