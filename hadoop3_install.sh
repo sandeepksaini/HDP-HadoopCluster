@@ -8,7 +8,7 @@ password='hadoop'
 tmpdir='/tmp/apache_hadoop'
 usr_dir='/usr/local/apache_hadoop'
 git_dir='/home/hadoop/gitrepo'
-gitrepo_li='https://github.com/sandeepksaini/linuxserversetup'
+gitrepo_linux='https://github.com/sandeepksaini/linuxserversetup'
 gitrepo_hadoop='https://github.com/sandeepksaini/HDP-HadoopCluster'
 hadoop_package='http://apache.is.co.za/hadoop/common/hadoop-3.0.0/hadoop-3.0.0.tar.gz'
 
@@ -30,9 +30,10 @@ chown -R ${user}:${group} ${tmpdir}
 mv ${tmpdir}/hadoop* ${usr_dir}
 
 #Cloning repo for script utilization
-or list in ${gitrepo_li} ${gitrepo_hadoop}
+for list in ${gitrepo_linux} ${gitrepo_hadoop}
 do
   git clone ${list} ${git_dir}
+  chown -R ${user}:${group} ${git_dir}
 done
 
 # SSH Key generation and copy for seemless ssh and allows hadoop to run without issues
