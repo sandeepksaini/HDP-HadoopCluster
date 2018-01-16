@@ -41,4 +41,4 @@ done
 # SSH Key generation and copy for seemless ssh and allows hadoop to run without issues
 su ${user} -c 'ssh-keygen -t RSA -P "" -f ~/.ssh/id_rsa'
 su ${user} -c 'user='hadoop';password='hadoop';sshpass -p ${password} ssh-copy-id -i /home/${user}/.ssh/id_rsa.pub -o StrictHostKeyChecking=no ${user}@`hostname`'
-systemctl sshd restart
+systemctl restart sshd
