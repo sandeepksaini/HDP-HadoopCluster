@@ -1,4 +1,4 @@
-!/bin/sh
+#!/bin/sh
 #Purpose : To automate the process of Hadoopv3 installation single node setup
 
 #Declaring variable
