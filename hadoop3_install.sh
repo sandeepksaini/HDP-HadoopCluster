@@ -29,11 +29,13 @@ rm -rf ${tmpdir}/*.gz
 chown -R ${user}:${group} ${tmpdir}
 mv ${tmpdir}/hadoop* ${usr_dir}
 
-#Cloning repo for script utilization
+#Git : Cloning repo for script utilization
 for repolist in ${gitrepo_linux} ${gitrepo_hadoop}
 do
-  git -c ${git_dir} clone ${repolist}
+  cd ${git_dir}
+  git clone ${repolist}
   chown -R ${user}:${group} ${git_dir}
+  cd -
 done
 
 # SSH Key generation and copy for seemless ssh and allows hadoop to run without issues
