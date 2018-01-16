@@ -29,6 +29,7 @@ rm -rf ${tmpdir}/*.gz
 chown -R ${user}:${group} ${tmpdir}
 chown -R ${user}:${group} ${usr_dir}
 mv ${tmpdir}/hadoop* ${usr_dir}
+rm -rf ${tmpdir}
 
 #Git : Cloning repo for script utilization
 for repolist in ${gitrepo_linux} ${gitrepo_hadoop}
