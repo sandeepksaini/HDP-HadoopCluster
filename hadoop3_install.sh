@@ -1,7 +1,7 @@
 #!/bin/sh
-#Purpose : To automate the process of Hadoopv3 installation single node setup
+#Purpose : To automate the process of Hadoopv3 installation on a Linux (Flavour: CentOS) single node setup
 
-#Declaring variable
+#Variable Declaration
 user='hadoop'
 group='hadoop'
 password='hadoop'
