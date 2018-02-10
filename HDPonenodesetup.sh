@@ -22,7 +22,7 @@ else
 fi
 
 #Check for ulimit and increase it of Open File Descriptor Value(i.e. ofd_val)
-if [ ${soft_limit} -le ${ofd_val} -a ${hard_limit} -ge ${ofd_val} ]
+if [ ${soft_limit} -le ${ofd_val} -a ${hard_limit} -le ${ofd_val} ]
 then
   ulimit -n ${ofd_val}
 fi
