@@ -26,6 +26,7 @@ fi
 if [ ${soft_limit} -le ${ofd_val} -a ${hard_limit} -le ${ofd_val}i -o -e ${HOME}/.bash_profile ]
 then
   echo "ulimit -n ${ofd_val}" >> ${HOME}/.bash_profile
+  printf "\nPlease exit the shell and re-login for ulimit value to take effect \n"
 fi
 
 
