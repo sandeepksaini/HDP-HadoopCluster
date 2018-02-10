@@ -31,10 +31,16 @@ fi
 
 
 #check for packages, prior to this make sure yum is installed using rpm and linux repo is setup
-for pck_lst in curl unzip tar scp ssh wget openssl
+for pck_lst in curl unzip tar scp ssh wget openssl yum-utils createrepo httpd yum-plugin-priorities
 do
   if [ `rpm -qa ${pck_lst}|wc -l` -eq 0 ]
   then
     yum -q -y install ${pck_lst}
   fi
 done
+
+#Step number to configuration of repositories for installation of Ambari
+sudo systemctl start httpd
+#Setting SELinux in permissive mode 
+setenforce 0
+
