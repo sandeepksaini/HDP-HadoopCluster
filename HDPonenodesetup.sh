@@ -11,6 +11,7 @@ mem_GB=`printf "%.0f" $(echo ${total_mem}/1024/1024|bc -l)`
 avail_space=`df -h|grep -w "/"|awk '{ print $4}'|tr -d "G"`
 used_cent=`df -h|grep -w "/"|awk '{ print $5}'|tr -d "%"`
 avail_cent=`printf "%d" $(echo 100 -${used_cent}|bc -l)`
+login_user=`whoami`
 
 #Hardware check - RAM
 if [ ${mem_GB} -ge 8 -a ${avail_space} -ge 20 -a ${avail_cent} -ge 70 ]
@@ -24,7 +25,13 @@ fi
 #Check for ulimit and increase it of Open File Descriptor Value(i.e. ofd_val)
 if [ ${soft_limit} -le ${ofd_val} -a ${hard_limit} -le ${ofd_val} ]
 then
-  ulimit -n ${ofd_val}
+  :
+elif [ -e ${HOME}/.bash_profile ]
+then
+  ulimit -n ${ofd_val} >> ${HOME}/.bash_profile
+else
+  touch ${HOME}/.bash_profile
+  ulimit -n ${ofd_val} >> ${HOME}/.bash_profile
 fi
 
 
