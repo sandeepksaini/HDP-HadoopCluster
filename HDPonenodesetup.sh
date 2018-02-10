@@ -13,7 +13,7 @@ used_cent=`df -h|grep -w "/"|awk '{ print $5}'|tr -d "%"`
 avail_cent=`printf "%d" $(echo 100 -${used_cent}|bc -l)`
 
 #Hardware check - RAM
-if [ ${mem_GB} -ge 8 -a ${avail_space} ge 20 -a ${avail_cent} -ge 70 ]
+if [ ${mem_GB} -ge 8 -a ${avail_space} -ge 20 -a ${avail_cent} -ge 70 ]
 then 
   echo " Good To Go :-)"
 else
