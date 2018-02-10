@@ -23,15 +23,9 @@ else
 fi
 
 #Check for ulimit and increase it of Open File Descriptor Value(i.e. ofd_val)
-if [ ${soft_limit} -le ${ofd_val} -a ${hard_limit} -le ${ofd_val} ]
+if [ ${soft_limit} -le ${ofd_val} -a ${hard_limit} -le ${ofd_val}i -o -e ${HOME}/.bash_profile ]
 then
-  :
-elif [ -e ${HOME}/.bash_profile ]
-then
-  ulimit -n ${ofd_val} >> ${HOME}/.bash_profile
-else
-  touch ${HOME}/.bash_profile
-  ulimit -n ${ofd_val} >> ${HOME}/.bash_profile
+  echo "ulimit -n ${ofd_val}" >> ${HOME}/.bash_profile
 fi
 
 
