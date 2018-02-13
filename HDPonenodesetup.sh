@@ -59,8 +59,8 @@ systemctl disable firewalld
 setenforce 0
 
 #Setting up the umask for the user-id in it's profile
- echo "umask 0022" >> ${HOME}/.bash_profile
- printf "\n Please log-off and login back for umask to set"
+echo "umask 0022" >> ${HOME}/.bash_profile
+printf "\n Please log-off and login back for umask to set"
 
 #Step number -2 to configuration of repositories for installation of Ambari
 sudo systemctl start httpd
