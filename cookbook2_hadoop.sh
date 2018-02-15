@@ -36,4 +36,6 @@ cd -
 wget -q -P ${hadoop_tmp} http://apache.is.co.za/hadoop/common/hadoop-2.7.5/hadoop-2.7.5.tar.gz
 pack_name1=`ls ${hadoop_tmp}|hadoop*|cut -d '/' -f3`
 tar -xzf ${pack_name1} -C /opt
+cd /opt/hadoop*
+mvn package -Pdist,native -DskipTests -Dtar
 
