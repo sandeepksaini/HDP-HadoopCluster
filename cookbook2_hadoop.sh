@@ -23,3 +23,17 @@ export M3_HOME=/opt/apache-maven-3.3.9
 export PATH=$JAVA_HOME/bin:/opt/apache-maven-3.3.9/bin:$PATH
 <<EOF
 
+#3- Download and setup protobuf
+wget -q -P ${hadoop_tmp} https://github.com/google/protobuf/releases/download/v2.5.0/protobuf-2.5.0.tar.gz
+pack_name1=`ls ${hadoop_tmp}|proto*|cut -d '/' -f3`
+tar -xzf ${pack_name1} -C /opt
+cd /opt/proto*
+./configure 2>&1 1>/dev/null
+make 2&1 1>/dev/null;make install 2&1 1>/dev/null
+cd -
+
+#4- Dowanload hadoop 2.7 stable package and install 
+wget -q -P ${hadoop_tmp} apache.uberglobalmirror.com/hadoop/common/stable2/hadoop-2.7.3-src.tar.gz
+pack_name1=`ls ${hadoop_tmp}|hadoop*|cut -d '/' -f3`
+tar -xzf ${pack_name1} -C /opt
+
