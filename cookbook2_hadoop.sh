@@ -33,7 +33,7 @@ make 2&1 1>/dev/null;make install 2&1 1>/dev/null
 cd -
 
 #4- Dowanload hadoop 2.7 stable package and install 
-wget -q -P ${hadoop_tmp} apache.uberglobalmirror.com/hadoop/common/stable2/hadoop-2.7.3-src.tar.gz
+wget -q -P ${hadoop_tmp} http://apache.is.co.za/hadoop/common/hadoop-2.7.5/hadoop-2.7.5.tar.gz
 pack_name1=`ls ${hadoop_tmp}|hadoop*|cut -d '/' -f3`
 tar -xzf ${pack_name1} -C /opt
 
