@@ -1,0 +1,61 @@
+HDFS
+1. HDFS report
+hdfs dfsadmin -report
+2. Namenode HA
+hdfs haadmin -failover nn2 nn1
+hdfs haadmin -getServiceState nn1
+hdfs haadmin -getServiceState nn2
+3. Safe mode
+hdfs dfsadmin -safemode get
+hdfs dfsadmin -safemode enter
+hdfs dfsadmin -safemode leave
+4. fsck
+hdfs fsck /
+hadoop fsck / -move
+hadoop fsck / -delete
+hadoop fsck / -files -blocks -locations
+5. Namenode recover
+hdfs namenode -recover
+6. Secondary namenode
+hdfs secondarynamenode -checkpoint force
+7. Offline fsimage/edits viewer
+hdfs oev -i edits_inprogress_0000000000000011129 -o /tmp/edits.xml
+hdfs oiv -i fsimage_0000000000000011128 -o /tmp/fsimage.out
+8. Replication factor
+hdfs dfs -setrep 3 filename
+9. hdfs dfs -stat <file path>
+%b  Size of file in bytes
+%F  Will return "file", "directory", or "symlink" depending on the type of inode
+%g  Group name
+%n  Filename
+%o  HDFS Block size in bytes ( 128MB by default )
+%r  Replication factor
+%u   Username of owner
+%y  Formatted mtime of inode
+%Y  UNIX Epoch mtime of inode
+10. Configuring JAVA
+alternatives --install /usr/bin/java java /usr/java/default/bin/java 1
+11. RWtest
+hadoop jar ./lib/maprfs-core-4.0.1-mapr-tests.jar com.mapr.fs.RWSpeedTest /hugefile/3 26000000 maprfs:///
+12. checknative
+hadoop checknative -a
+
+==
+YARN
+1. Yarn node list
+yarn node -list
+2. Yarn Queues
+yarn rmadmin -refreshQueues
+3. Jobs List
+mapred job -list
+4. Troubleshoot
+jstack -J-d64 -m <pid>
+5.Print effective parameters
+hadoop conf-details print-all-effective-properties
+MRV1
+1. Set debug logging for jobtracker
+maprcli setloglevel jobtracker -classname org.apache.hadoop.mapred.JobTracker -loglevel DEBUG -node n2a  -port 50030
+maprcli setloglevel jobtracker -classname org.apache.hadoop.mapred.JobTracker -loglevel INFO -node n2a  -port 50030
+
+hadoop daemonlog -setlevel n2a:50030 org.apache.hadoop.mapred.JobTracker DEBUG    
+hadoop daemonlog -setlevel n2a:50030 org.apache.hadoop.mapred.JobTracker INFO
